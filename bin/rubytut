@@ -1,0 +1,83 @@
+#! /usr/bin/env ruby
+
+require 'pygments'
+require 'ap'
+require 'debugger'
+
+# TODO: Treat comments as part of the code for better output
+# TODO: Better breakpoint support (Use of debugger should act as it normally
+# would. i.e. proper line numbers and such)
+# TODO: HTML output. (Would be cool if html version could instantly provide a
+# context at any pointint the script, or if you could do this from the command
+# line too, perhaps by enumerating the output)
+# TODO: Add support for assertions
+# TODO: Printing into less
+# TODO: Add usage info and package as gem
+# TODO: Create a rubytut server that provides html output and integrated dynamic
+# irb consoles.
+# TODO: [BUG] nil should be printed when that is the result of evualation
+# TODO: Better detection of blocks, empty lines should trigger evaulation. There
+# should always be code.
+# TODO: Run inside and interactive window that allow line selection, and opening
+# an irb breakpoint by click enter based on where you are. This should exit back
+# up when you leave.
+#
+# RubyTut or Tuby or tuty, teaches you how to do something in ruby with ruby.
+
+
+# Could also be rubytootn or rubytoot
+# I could also call this project xray, because it let's you see the source and
+# the output of an executing ruby file. Would be great if I could add assertions
+# to. It is a form of literate programming; and tells a story. (xray name is
+# taken, fyi)
+
+# Breaks up comments and code.
+def parse(source)
+  result = [[]]
+  working_result = result.first
+  context = :comment
+  source.lines do |line|
+    line_type = line =~ /^#/ ? :comment : :code
+    if context == :code && line_type == :comment
+      result << (working_result = [line])
+    else
+      working_result << line
+    end
+    context = line_type
+  end
+  result
+end
+
+def higlight(code)
+  Pygments.highlight(code, :lexer => 'ruby', :formatter => 'terminal')
+end
+
+def format_comment(comment)
+  comment.lines.map do |line|
+    "## " << line[1..-1].strip
+  end
+end
+
+def indent(string, spaces=2)
+  string.lines.map do |line|
+    (" " * spaces) << line
+  end.join
+end
+
+tut_path = File.expand_path('../../' + ARGV[0], __FILE__)
+source = File.read(tut_path)
+
+# Get a binding for the entire script, 1.9 won't create local dynamically, so
+# we need to pass this binding to eval for the evaulation of the individual
+# peices.
+binding = catch(:binding){ eval "throw :binding, send(:binding); #{source}" }
+
+source = parse(source)
+
+source.each do |body|
+  puts higlight(body.join)
+  result = eval(body.join, binding)
+  print "=> "
+  ap result
+  puts ""
+end
