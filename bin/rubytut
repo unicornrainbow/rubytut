@@ -29,6 +29,8 @@ require 'debugger'
 # the output of an executing ruby file. Would be great if I could add assertions
 # to. It is a form of literate programming; and tells a story. (xray name is
 # taken, fyi)
+# TODO: Evaluator should evaluate and print every line (Not open blocks and
+# stuff), no need to parse on comments.
 
 # Breaks up comments and code.
 def parse(source)
