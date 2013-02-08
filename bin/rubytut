@@ -24,7 +24,6 @@ require 'debugger'
 #
 # RubyTut or Tuby or tuty, teaches you how to do something in ruby with ruby.
 
-
 # Could also be rubytootn or rubytoot
 # I could also call this project xray, because it let's you see the source and
 # the output of an executing ruby file. Would be great if I could add assertions
@@ -64,8 +63,7 @@ def indent(string, spaces=2)
   end.join
 end
 
-tut_path = File.expand_path('../../' + ARGV[0], __FILE__)
-source = File.read(tut_path)
+source = File.read(ARGV[0])
 
 # Get a binding for the entire script, 1.9 won't create local dynamically, so
 # we need to pass this binding to eval for the evaulation of the individual
