@@ -4,7 +4,6 @@ require 'pygments'
 require 'ap'
 require 'debugger'
 
-# TODO: Treat comments as part of the code for better output
 # TODO: Better breakpoint support (Use of debugger should act as it normally
 # would. i.e. proper line numbers and such)
 # TODO: HTML output. (Would be cool if html version could instantly provide a
@@ -21,6 +20,7 @@ require 'debugger'
 # TODO: Run inside and interactive window that allow line selection, and opening
 # an irb breakpoint by click enter based on where you are. This should exit back
 # up when you leave.
+# TODO: A server version with spots for breakpoints
 #
 # RubyTut or Tuby or tuty, teaches you how to do something in ruby with ruby.
 
