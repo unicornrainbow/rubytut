@@ -1,6 +1,20 @@
 # Rubytut
 
-TODO: Write a gem description
+Rubytut is a great way to capture the understanding of a particular interface.
+It let's you write some Ruby that tries out some code, and then generate output
+that shows the result of the code every step of the way. It's pretty cool.
+
+I was inspired by idea's I've heard from fellow programmers in the past,
+Donald Knuth's [Literate Programming][1], [Docco][2], the
+[rspec_api_documentation gem][3].
+
+Currently, you can run you application through the processor `rubytut` to get
+colorized output at the terminal. I have plans to implement a server that would
+produce and html representation of the application and allow you to enter a
+break pointed debugger session at an point in the application with a click.
+
+Very excited about how this formalizes, and allows capturing of the particular
+aspects of Code.
 
 ## Installation
 
@@ -18,7 +32,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Do this.
+
+    rubytut <your_literate_ruby_program>
 
 ## Contributing
 
@@ -52,3 +68,7 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+[1]: http://en.wikipedia.org/wiki/Literate_programming
+[2]: http://jashkenas.github.com/docco/
+[3]: https://github.com/zipmark/rspec_api_documentation
