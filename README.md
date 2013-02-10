@@ -2,19 +2,7 @@
 
 Rubytut is a great way to capture the understanding of a particular interface.
 It let's you write some Ruby that tries out some code, and then generate output
-that shows the result of the code every step of the way. It's pretty cool.
-
-I was inspired by idea's I've heard from fellow programmers in the past,
-Donald Knuth's [Literate Programming][1], [Docco][2], the
-[rspec_api_documentation gem][3].
-
-Currently, you can run you application through the processor `rubytut` to get
-colorized output at the terminal. I have plans to implement a server that would
-produce and html representation of the application and allow you to enter a
-break pointed debugger session at an point in the application with a click.
-
-Very excited about how this formalizes, and allows capturing of the particular
-aspects of Code.
+that shows the result of the code as it executes.
 
 ## Installation
 
@@ -32,9 +20,31 @@ Or install it yourself as:
 
 ## Usage
 
-Do this.
+As an example, consider a ruby file with the following contents names
+hello_world.rb.
+
+    # Say hello
+    puts "Hello world!"
+
+    # Say hello 5 times.
+    5.times { puts "Hello world!" }
+
+Invoking `rubytut` with the file yields the following results.
 
     rubytut <your_literate_ruby_program>
+    # Say hello
+    puts "Hello world!"
+    Hello world!
+    => nil
+
+    # Say hello 5 times.
+    5.times { puts "Hello world!" }
+    Hello world!
+    Hello world!
+    Hello world!
+    Hello world!
+    Hello world!
+    => 5
 
 ## Contributing
 
